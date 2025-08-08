@@ -3,14 +3,17 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Github, Mail, Phone, ExternalLink, Users, Trophy, Linkedin, Calendar, ChevronDown } from "lucide-react"
+import { Github, Mail, Phone, ExternalLink, Users, Trophy, Linkedin, Calendar, ChevronDown } from 'lucide-react'
 import Link from "next/link"
 import { useState, useEffect } from "react"
+import { ProjectModal } from "@/components/project-modal"
+import ToolboxGrid from "@/components/toolbox-grid"
 
 export default function Portfolio() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
   const [achievementFilter, setAchievementFilter] = useState("All")
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     setIsVisible(true)
@@ -38,6 +41,7 @@ export default function Portfolio() {
       link: "https://agent-royale-ai.vercel.app/",
       emoji: "🤖",
       featured: true,
+      image: "/images/project-agent-royale.jpeg",
     },
     {
       title: "AI-Powered Liquidity Pool Advisor",
@@ -47,6 +51,7 @@ export default function Portfolio() {
       emoji: "💧",
       featured: true,
       contribution: "Frontend Development & Integration",
+      image: "/images/project-liquidity-pool.jpeg",
     },
     {
       title: "NFT Marketplace",
@@ -55,6 +60,7 @@ export default function Portfolio() {
       link: "https://encode-hackathon-ten.vercel.app/",
       emoji: "🖼️",
       featured: true,
+      image: "/images/project-nft.jpeg",
     },
     {
       title: "Budget AI Advisor",
@@ -62,6 +68,7 @@ export default function Portfolio() {
       tech: ["Node.js", "Gemini API", "AI", "Financial Tech"],
       emoji: "💰",
       featured: false,
+      image: "/images/project-budget.jpeg",
     },
     {
       title: "QuantTrading Backtest System",
@@ -69,6 +76,7 @@ export default function Portfolio() {
       tech: ["Python", "Trading", "Analytics", "Finance"],
       emoji: "📈",
       featured: false,
+      image: "/images/project-quant.jpeg",
     },
     {
       title: "Asset Management System",
@@ -76,6 +84,7 @@ export default function Portfolio() {
       tech: ["Laravel", "PHP", "MySQL", "Enterprise"],
       emoji: "📊",
       featured: false,
+      image: "/images/project-asset.jpeg",
     },
   ]
 
@@ -130,7 +139,7 @@ export default function Portfolio() {
       : achievements.filter((achievement) => achievement.type === achievementFilter)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overflow-hidden px-4 sm:px-0">
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
@@ -140,11 +149,13 @@ export default function Portfolio() {
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-md border-b border-purple-500/20">
-        <div className="max-w-6xl mx-auto px-4 py-4">
+        <div className="max-w-6xl mx-auto px-6 sm:px-4 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h1 className="text-xl md:text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Celine Khaw
             </h1>
+
+            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               {["Home", "About", "Skills", "Projects", "Experience", "Contact"].map((item) => (
                 <a
@@ -157,10 +168,38 @@ export default function Portfolio() {
                 </a>
               ))}
             </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center space-x-4">
+              <Button
+                variant="outline"
+                size="sm"
+                className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white text-xs px-2 py-1"
+                asChild
+              >
+                <Link
+                  href="https://www.canva.com/design/DAGo8KSmEkU/LGt7S8QVuwi294S9aF4SIA/edit?utm_content=DAGo8KSmEkU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+                  target="_blank"
+                >
+                  Resume
+                </Link>
+              </Button>
+              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white p-2">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {isMobileMenuOpen ? (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
+
+            {/* Desktop Resume Button */}
             <Button
               variant="outline"
               size="sm"
-              className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white"
+              className="hidden md:flex border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white"
               asChild
             >
               <Link
@@ -172,12 +211,33 @@ export default function Portfolio() {
               </Link>
             </Button>
           </div>
+
+          {/* Mobile Menu */}
+          {isMobileMenuOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-purple-500/20">
+              <div className="flex flex-col space-y-4 pt-4">
+                {["Home", "About", "Skills", "Projects", "Experience", "Contact"].map((item) => (
+                  <a
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-gray-300 hover:text-purple-400 transition-colors duration-300 font-medium text-lg py-2"
+                  >
+                    {item}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative z-10 px-4">
-        <div className="text-center max-w-6xl mx-auto">
+      <section
+        id="home"
+        className="min-h-screen flex items-center justify-center relative z-10 px-6 sm:px-4 pt-24 md:pt-0"
+      >
+        <div className="text-center max-w-6xl mx-auto px-2 sm:px-0">
           <div
             className={`transform transition-all duration-1000 ${
               isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
@@ -185,20 +245,20 @@ export default function Portfolio() {
           >
             {/* Profile Image */}
 
-            <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 md:mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent animate-pulse leading-tight px-2">
               Khaw Tze Ern, Celine
             </h1>
-            <p className="text-xl md:text-2xl text-white mb-4 font-semibold tracking-wide">
+            <p className="text-lg sm:text-xl md:text-2xl text-white mb-4 md:mb-4 font-semibold tracking-wide px-6 sm:px-4">
               Computer Science (AI) Student | Software Engineer Intern | Web3 & AI Enthusiast
             </p>
-            <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto font-medium">
+            <p className="text-base md:text-lg text-gray-200 mb-8 md:mb-8 max-w-2xl mx-auto font-medium px-6 sm:px-4">
               "Exploring the edges of AI, blockchain, and software to shape tomorrow."
             </p>
-            <div className="flex justify-center space-x-6 mb-12">
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12 md:mb-12 px-6 sm:px-4">
               <Button
                 variant="outline"
                 size="lg"
-                className="border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white hover:scale-105 transition-all duration-300"
+                className="w-full sm:w-auto border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white hover:scale-105 transition-all duration-300"
                 asChild
               >
                 <Link href="https://github.com/kteceline" target="_blank">
@@ -209,7 +269,7 @@ export default function Portfolio() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-pink-400 text-pink-400 hover:bg-pink-400 hover:text-white hover:scale-105 transition-all duration-300"
+                className="w-full sm:w-auto border-pink-400 text-pink-400 hover:bg-pink-400 hover:text-white hover:scale-105 transition-all duration-300"
                 asChild
               >
                 <Link href="mailto:leopardjiang03@gmail.com">
@@ -220,7 +280,7 @@ export default function Portfolio() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white hover:scale-105 transition-all duration-300"
+                className="w-full sm:w-auto border-blue-400 text-blue-400 hover:bg-blue-400 hover:text-white hover:scale-105 transition-all duration-300"
                 asChild
               >
                 <Link href="https://www.linkedin.com/in/celine-khaw-a1433a237/" target="_blank">
@@ -238,37 +298,37 @@ export default function Portfolio() {
 
       <div className="relative z-10">
         {/* About Section */}
-        <section id="about" className="py-20 px-4">
+        <section id="about" className="py-16 md:py-20 px-6 sm:px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               About Me
             </h2>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="w-80 h-80 mx-auto bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full flex items-center justify-center border border-purple-500/30 hover:scale-105 transition-transform duration-300">
-                  <div className="w-64 h-64 bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-full overflow-hidden border-2 border-purple-400/50">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+              <div className="order-2 md:order-1">
+                <div className="w-64 h-64 md:w-80 md:h-80 mx-auto bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full flex items-center justify-center border border-purple-500/30 hover:scale-105 transition-transform duration-300">
+                  <div className="w-52 h-52 md:w-64 md:h-64 bg-gradient-to-br from-purple-600/30 to-pink-600/30 rounded-full overflow-hidden border-2 border-purple-400/50">
                     <img src="/images/celine-profile.jpeg" alt="Celine Khaw" className="w-full h-full object-cover" />
                   </div>
                 </div>
               </div>
-              <div className="space-y-6">
-                <p className="text-lg text-white leading-relaxed font-medium">
+              <div className="space-y-4 md:space-y-6 order-1 md:order-2">
+                <p className="text-base md:text-lg text-white leading-relaxed font-medium">
                   Hey there! 👋 I'm a tech enthusiast and IT student on the lookout for opportunities in the industry.
                   I'm all about diving into immersive experiences that let me explore the endless possibilities of
                   technology.
                 </p>
-                <p className="text-lg text-white leading-relaxed font-medium">
+                <p className="text-base md:text-lg text-white leading-relaxed font-medium">
                   I've honed diverse skills like customer service, communication, and problem-solving. Put me in a
                   fast-paced environment, and watch me thrive—I'm all about embracing new challenges and tech like it's
                   second nature.
                 </p>
-                <div className="grid grid-cols-2 gap-4 mt-8">
+                <div className="grid grid-cols-2 gap-3 md:gap-4 mt-6 md:mt-8">
                   {["Curious", "Tech-Driven", "Communicative", "Resilient"].map((quality, index) => (
                     <div
                       key={quality}
-                      className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-4 rounded-lg border border-purple-500/30 hover:scale-105 transition-transform duration-300"
+                      className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-3 md:p-4 rounded-lg border border-purple-500/30 hover:scale-105 transition-transform duration-300"
                     >
-                      <span className="text-purple-300 font-semibold text-lg">{quality}</span>
+                      <span className="text-purple-300 font-semibold text-base md:text-lg">{quality}</span>
                     </div>
                   ))}
                 </div>
@@ -278,9 +338,9 @@ export default function Portfolio() {
         </section>
 
         {/* Education Section */}
-        <section className="py-20 px-4 bg-black/20">
+        <section className="py-16 md:py-20 px-6 sm:px-4 bg-black/20">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Education
             </h2>
             <div className="space-y-8">
@@ -323,9 +383,9 @@ export default function Portfolio() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="py-20 px-4">
+        <section id="skills" className="py-16 md:py-20 px-6 sm:px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Technical Skills
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
@@ -371,51 +431,67 @@ export default function Portfolio() {
           </div>
         </section>
 
+        <section className="py-0">
+          <ToolboxGrid />
+        </section>
+
         {/* Projects Section */}
-        <section id="projects" className="py-20 px-4 bg-black/20">
+        <section id="projects" className="py-16 md:py-20 px-6 sm:px-4 bg-black/20">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Featured Projects
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8">
               {projects
                 .filter((p) => p.featured)
                 .map((project, index) => (
                   <Card
                     key={project.title}
-                    className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 border-purple-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 group"
+                    className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 border-purple-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 group overflow-hidden"
                   >
-                    <CardHeader>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <span className="text-3xl group-hover:scale-125 transition-transform duration-300">
-                            {project.emoji}
-                          </span>
-                          <CardTitle className="text-white group-hover:text-purple-200 transition-colors duration-300 font-bold text-xl">
-                            {project.title}
-                          </CardTitle>
-                        </div>
-                        {project.link && (
+                    {/* Project Image */}
+                    <div className="relative h-40 md:h-48 w-full overflow-hidden">
+                      <img
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      {project.link && (
+                        <div className="absolute top-2 right-2">
                           <Button
                             variant="ghost"
-                            size="sm"
-                            className="text-pink-400 hover:text-pink-300 hover:bg-pink-500/20"
+                            size="icon"
+                            className="bg-black/50 text-white hover:bg-black/70 rounded-full h-8 w-8"
                             asChild
                           >
                             <Link href={project.link} target="_blank">
                               <ExternalLink className="w-4 h-4" />
                             </Link>
                           </Button>
-                        )}
+                        </div>
+                      )}
+                    </div>
+
+                    <ProjectModal project={project} />
+
+                    <CardHeader className="pb-2">
+                      <div className="flex items-center space-x-3">
+                        <span className="text-xl md:text-2xl group-hover:scale-125 transition-transform duration-300">
+                          {project.emoji}
+                        </span>
+                        <CardTitle className="text-white group-hover:text-purple-200 transition-colors duration-300 font-bold text-lg md:text-xl">
+                          {project.title}
+                        </CardTitle>
                       </div>
                     </CardHeader>
+
                     <CardContent>
-                      <p className="text-white mb-4 group-hover:text-gray-200 transition-colors duration-300 font-medium">
+                      <p className="text-white mb-4 group-hover:text-gray-200 transition-colors duration-300 font-medium text-sm md:text-base">
                         {project.description}
                       </p>
                       {project.contribution && (
                         <div className="mb-4 bg-purple-500/20 p-2 rounded-md">
-                          <p className="text-white font-bold">
+                          <p className="text-white font-bold text-sm md:text-base">
                             My Role: <span className="text-pink-300">{project.contribution}</span>
                           </p>
                         </div>
@@ -424,7 +500,7 @@ export default function Portfolio() {
                         {project.tech.map((tech) => (
                           <Badge
                             key={tech}
-                            className="bg-purple-500/20 text-white border-purple-500/30 hover:bg-purple-500/30 transition-colors duration-300 font-medium"
+                            className="bg-purple-500/20 text-white border-purple-500/30 hover:bg-purple-500/30 transition-colors duration-300 font-medium text-xs md:text-sm"
                           >
                             {tech}
                           </Badge>
@@ -435,34 +511,46 @@ export default function Portfolio() {
                 ))}
             </div>
 
-            <h3 className="text-2xl font-bold text-center my-12 text-white">Other Projects</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h3 className="text-xl md:text-2xl font-bold text-center my-8 md:my-12 text-white">Other Projects</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {projects
                 .filter((p) => !p.featured)
                 .map((project, index) => (
                   <Card
                     key={project.title}
-                    className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border-purple-500/20 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 group"
+                    className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border-purple-500/20 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 group overflow-hidden"
                   >
-                    <CardHeader>
+                    {/* Project Image */}
+                    <div className="relative h-32 md:h-40 w-full overflow-hidden">
+                      <img
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                    </div>
+
+                    <ProjectModal project={project} />
+
+                    <CardHeader className="pb-2">
                       <div className="flex items-center space-x-3">
-                        <span className="text-2xl group-hover:scale-125 transition-transform duration-300">
+                        <span className="text-lg md:text-xl group-hover:scale-125 transition-transform duration-300">
                           {project.emoji}
                         </span>
-                        <CardTitle className="text-white group-hover:text-purple-200 transition-colors duration-300 font-bold">
+                        <CardTitle className="text-white group-hover:text-purple-200 transition-colors duration-300 font-bold text-base md:text-lg">
                           {project.title}
                         </CardTitle>
                       </div>
                     </CardHeader>
+
                     <CardContent>
-                      <p className="text-white mb-4 group-hover:text-gray-200 transition-colors duration-300 font-medium">
+                      <p className="text-white mb-4 group-hover:text-gray-200 transition-colors duration-300 font-medium text-sm md:text-base">
                         {project.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {project.tech.map((tech) => (
+                        {project.tech.slice(0, 3).map((tech) => (
                           <Badge
                             key={tech}
-                            className="bg-purple-500/20 text-white border-purple-500/30 hover:bg-purple-500/30 transition-colors duration-300 font-medium"
+                            className="bg-purple-500/20 text-white border-purple-500/30 hover:bg-purple-500/30 transition-colors duration-300 font-medium text-xs md:text-sm"
                           >
                             {tech}
                           </Badge>
@@ -476,9 +564,9 @@ export default function Portfolio() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="py-20 px-4">
+        <section id="experience" className="py-16 md:py-20 px-6 sm:px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Experience
             </h2>
             <div className="space-y-8">
@@ -517,9 +605,9 @@ export default function Portfolio() {
         </section>
 
         {/* Achievements Section */}
-        <section className="py-20 px-4 bg-black/20">
+        <section className="py-16 md:py-20 px-6 sm:px-4 bg-black/20">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Certificates & Achievements
             </h2>
 
@@ -576,9 +664,9 @@ export default function Portfolio() {
         </section>
 
         {/* Clubs & Leadership */}
-        <section className="py-20 px-4">
+        <section className="py-16 md:py-20 px-6 sm:px-4">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Leadership & Community
             </h2>
             <div className="grid md:grid-cols-2 gap-8">
@@ -620,13 +708,13 @@ export default function Portfolio() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20 px-4 bg-black/20">
+        <section id="contact" className="py-16 md:py-20 px-6 sm:px-4 bg-black/20">
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Get In Touch
             </h2>
             <div className="max-w-4xl mx-auto">
-              <div className="space-y-6">
+              <div className="space-y-8 px-2 sm:px-0">
                 <div className="flex items-center space-x-4 p-4 bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-lg border border-purple-500/20 hover:scale-105 transition-transform duration-300">
                   <Mail className="w-6 h-6 text-purple-400" />
                   <div>
