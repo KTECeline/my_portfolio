@@ -50,7 +50,7 @@ export default function Toolbox() {
               onClick={() => setActiveTab(category as keyof typeof toolboxData)}
               className={`px-6 py-2 rounded-full border ${
                 activeTab === category
-                  ? "bg-purple-500 text-white"
+                  ? "bg-purple-500/50 text-white"
                   : "bg-gray-800 text-gray-300"
               }`}
             >
@@ -75,8 +75,11 @@ export default function Toolbox() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="flex flex-col items-center bg-gray-800 rounded-lg p-4 shadow-lg hover:scale-105 transition-transform"
-              >
+                className="flex flex-col items-center bg-gradient-to-br from-purple-800/50 to-pink-800/50 
+             border border-purple-500/20 rounded-lg p-4 shadow-lg 
+             hover:scale-105 hover:border-purple-400/50 
+             transition-all duration-300 group"
+>
                 <img src={tool.logo} alt={tool.name} className="w-12 h-12 mb-2" />
                 <span className="text-white text-sm font-medium text-center">
                   {tool.name}

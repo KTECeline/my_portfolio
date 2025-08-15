@@ -123,6 +123,7 @@ export default function Portfolio() {
     { name: "Internal APU CTF 2024", type: "Competition", year: "2024" },
     { name: "University Future of Blockchain Hackathon 2025", type: "Hackathon", year: "2025" },
     { name: "Agentic Ethereum 2025 (ETHGlobal)", type: "Hackathon", year: "2025" },
+    { name: "Breakout SOLANA/ MEGAHACK 2025", type: "Hackathon", year: "2025" }
   ]
 
   const filterTypes = ["All", "Hackathon", "Conference", "Certification", "Competition"]
@@ -330,8 +331,7 @@ export default function Portfolio() {
      
         
 
- {/* Toolbox Section */}
-  <Toolbox />
+ 
         {/* Projects Section */}
         <section id="projects" className="py-20 px-4 bg-black/20">
           <div className="max-w-6xl mx-auto">
@@ -442,37 +442,34 @@ export default function Portfolio() {
             <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
               Experience
             </h2>
-            <div className="space-y-8">
-              {experiences.map((exp, index) => (
-                <Card
-                  key={exp.title}
-                  className={`bg-gradient-to-r from-purple-900/50 to-pink-900/50 border-purple-500/30 hover:scale-105 transition-all duration-300 ${
-                    exp.current ? "ring-2 ring-purple-400" : ""
-                  }`}
-                >
-                  <CardHeader>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <CardTitle className="text-2xl text-white flex items-center font-bold">
-                          {exp.title}
-                          {exp.current && (
-                            <Badge className="ml-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium">
-                              Current
-                            </Badge>
-                          )}
-                        </CardTitle>
-                        <CardDescription className="text-gray-200 text-lg font-medium">{exp.company}</CardDescription>
+            <div className="relative">
+              <div className="border-l-4 border-purple-500 absolute h-full left-6 top-0"></div>
+              <div className="space-y-12 ml-12">
+                {experiences.map((exp, index) => (
+                  <div key={exp.title} className="relative">
+                    <div className="absolute -left-7 top-2 w-5 h-5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 border-4 border-purple-900"></div>
+                    <div className={`bg-gradient-to-r from-purple-900/50 to-pink-900/50 border-purple-500/30 p-6 rounded-xl shadow-lg transition-all duration-300 ${exp.current ? "ring-2 ring-purple-400" : ""}`}>
+                      <div className="flex justify-between items-center mb-2">
+                        <div>
+                          <h3 className="text-2xl text-white font-bold flex items-center">
+                            {exp.title}
+                            {exp.current && (
+                              <Badge className="ml-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white font-medium">
+                                Current
+                              </Badge>
+                            )}
+                          </h3>
+                          <p className="text-gray-200 text-lg font-medium">{exp.company}</p>
+                        </div>
+                        <Badge className="bg-purple-500/20 text-white border-purple-500/30 font-medium text-base">
+                          {exp.period}
+                        </Badge>
                       </div>
-                      <Badge className="bg-purple-500/20 text-white border-purple-500/30 font-medium text-base">
-                        {exp.period}
-                      </Badge>
+                      <p className="text-white font-medium mt-2">{exp.description}</p>
                     </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-white font-medium">{exp.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -536,6 +533,8 @@ export default function Portfolio() {
           </div>
         </section>
 
+    {/* Toolbox Section */}
+      <Toolbox />
         {/* Clubs & Leadership */}
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
