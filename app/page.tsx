@@ -96,9 +96,6 @@ export default function Portfolio() {
         {/* About Section */}
         <About />
 
-        {/* Toolbox Section */}
-        <Toolbox />
-
         {/* Projects Section */}
         <Projects />
 
@@ -107,6 +104,9 @@ export default function Portfolio() {
 
         {/* Achievements Section */}
         <Achievements />
+
+        {/* Toolbox Section */}
+        <Toolbox />
 
         {/* Clubs & Leadership */}
         <Clubs />

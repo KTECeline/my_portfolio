@@ -18,7 +18,7 @@ const projects = [
     emoji: "🤖",
     featured: true,
     role: "Full Stack Developer",
-    demoGif: "/placeholder.svg?height=200&width=300&text=Agent+Royale+Demo",
+    demoGif: "https://placehold.co/300x200?text=Agent+Royale+Demo",
   },
   {
     title: "AI-Powered Liquidity Pool Advisor",
@@ -28,7 +28,7 @@ const projects = [
     emoji: "💧",
     featured: true,
     role: "Frontend Developer",
-    demoGif: "/placeholder.svg?height=200&width=300&text=DeFi+Advisor+Demo",
+    demoGif: "https://placehold.co/300x200?text=DeFi+Advisor+Demo",
   },
   {
     title: "NFT Marketplace",
@@ -38,7 +38,7 @@ const projects = [
     emoji: "🖼️",
     featured: true,
     role: "Blockchain Developer",
-    demoGif: "/placeholder.svg?height=200&width=300&text=NFT+Marketplace+Demo",
+    demoGif: "https://placehold.co/300x200?text=NFT+Marketplace+Demo",
   },
   {
     title: "Budget AI Advisor",
@@ -47,7 +47,7 @@ const projects = [
     emoji: "💰",
     featured: false,
     role: "Backend Developer",
-    demoGif: "/placeholder.svg?height=200&width=300&text=Budget+AI+Demo",
+    demoGif: "https://placehold.co/300x200?text=Budget+AI+Demo",
   },
   {
     title: "QuantTrading Backtest System",
@@ -56,7 +56,7 @@ const projects = [
     emoji: "📈",
     featured: false,
     role: "Data Scientist",
-    demoGif: "/placeholder.svg?height=200&width=300&text=QuantTrading+Demo",
+    demoGif: "https://placehold.co/300x200?text=QuantTrading+Demo",
   },
   {
     title: "Asset Management System",
@@ -65,7 +65,7 @@ const projects = [
     emoji: "📊",
     featured: false,
     role: "Full Stack Developer",
-    demoGif: "/placeholder.svg?height=200&width=300&text=Asset+Management+Demo",
+    demoGif: "https://placehold.co/300x200?text=Asset+Management+Demo",
   },
 ]
 
