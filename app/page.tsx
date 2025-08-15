@@ -6,15 +6,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Github, Mail, Phone, ExternalLink, Users, Trophy, Linkedin, Calendar, ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { useState, useEffect } from "react"
+import {motion, AnimatePresence} from "framer-motion";
+import Toolbox from "@/components/Toolbox";
 
 export default function Portfolio() {
   const [isVisible, setIsVisible] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
   const [achievementFilter, setAchievementFilter] = useState("All")
 
-  useEffect(() => {
-    setIsVisible(true)
-  }, [])
 
   const skills = [
     { name: "Python", level: 90 },
@@ -27,7 +26,11 @@ export default function Portfolio() {
     { name: "Laravel", level: 85 },
     { name: "Solidity", level: 75 },
     { name: "React", level: 85 },
-  ]
+  ];
+
+  useEffect(() => {
+    setIsVisible(true)
+  }, [])
 
   const projects = [
     {
@@ -235,6 +238,7 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+ 
 
       <div className="relative z-10">
         {/* About Section */}
@@ -323,54 +327,11 @@ export default function Portfolio() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Technical Skills
-            </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {skills.map((skill, index) => (
-                <div key={skill.name} className="space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-lg font-bold text-white">{skill.name}</span>
-                    <span className="text-gray-200 font-medium">{skill.level}%</span>
-                  </div>
-                  <div className="w-full bg-gray-700 rounded-full h-3">
-                    <div
-                      className="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full transition-all duration-1000 ease-out"
-                      style={{ width: `${skill.level}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-12">
-              <h3 className="text-2xl font-bold text-center mb-8 text-white">Tools & Technologies</h3>
-              <div className="flex flex-wrap justify-center gap-4">
-                {[
-                  "Figma",
-                  "Canva",
-                  "GitHub",
-                  "GitLab",
-                  "Visual Studio Code",
-                  "Adobe PS",
-                  "Adobe Premiere",
-                  "Microsoft Office",
-                  "ELIZA OS",
-                  "Anchor",
-                ].map((tool) => (
-                  <Badge
-                    key={tool}
-                    className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-white border-purple-500/30 px-4 py-2 hover:scale-110 transition-transform duration-300 text-base font-medium"
-                  >
-                    {tool}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+     
+        
 
+ {/* Toolbox Section */}
+  <Toolbox />
         {/* Projects Section */}
         <section id="projects" className="py-20 px-4 bg-black/20">
           <div className="max-w-6xl mx-auto">
