@@ -299,14 +299,36 @@ export default function Portfolio() {
                       </CardDescription>
                     </div>
                     <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 text-base font-bold">
-                      CGPA: 3.78
+                      CGPA: 3.66
                     </Badge>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center space-x-4 text-gray-200 font-medium">
                     <Calendar className="w-5 h-5" />
-                    <span>Year 2 Semester 1 • 2022 - Present</span>
+                    <span>Year 2 Semester 1 • 2025 - Present</span>
+                  </div>
+                </CardContent>
+              </Card>
+              
+              <Card className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 border-purple-500/30 hover:scale-105 transition-all duration-300">
+                <CardHeader>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <CardTitle className="text-2xl text-white font-bold">Asia Pacific University</CardTitle>
+                      <CardDescription className="text-gray-200 text-lg font-medium">
+                        Diploma in Software Engineering
+                      </CardDescription>
+                    </div>
+                    <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 text-base font-bold">
+                      CGPA: 3.74
+                    </Badge>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center space-x-4 text-gray-200 font-medium">
+                    <Calendar className="w-5 h-5" />
+                    <span>2022 - 2024  • 3 months internship</span>
                   </div>
                 </CardContent>
               </Card>
