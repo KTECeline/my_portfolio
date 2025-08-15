@@ -13,7 +13,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Khaw Tze Ern, Celine - Portfolio",
   description: "Computer Science (AI) Student | Software Engineer | Web3 & AI Enthusiast",
-    generator: 'v0.dev'
+  generator: "v0.dev",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -23,6 +23,111 @@ body {
   background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
+/* ARCADE THEME */
+[data-theme="arcade"] body {
+  background: linear-gradient(45deg, #ff0080, #00ff80, #0080ff, #ff8000, #8000ff, #ff0040) !important;
+  background-size: 600% 600% !important;
+  animation: arcadeBackground 3s ease infinite !important;
+  font-family: "Courier New", monospace !important;
+}
+
+@keyframes arcadeBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+[data-theme="arcade"] .text-white,
+[data-theme="arcade"] .text-gray-300,
+[data-theme="arcade"] .text-gray-200 {
+  color: #00ff00 !important;
+  text-shadow: 0 0 10px #00ff00 !important;
+}
+
+[data-theme="arcade"] h1,
+[data-theme="arcade"] h2,
+[data-theme="arcade"] h3 {
+  font-family: "Courier New", monospace !important;
+  text-transform: uppercase !important;
+  letter-spacing: 3px !important;
+  color: #00ffff !important;
+  text-shadow: 0 0 15px #00ffff !important;
+}
+
+[data-theme="arcade"] .bg-gradient-to-r,
+[data-theme="arcade"] .bg-gradient-to-br {
+  background: #000000 !important;
+  border: 2px solid #00ff00 !important;
+  box-shadow: 0 0 20px #00ff0044 !important;
+}
+
+/* SPACE THEME */
+[data-theme="space"] body {
+  background: radial-gradient(ellipse at center, #0d1b2a 0%, #1b263b 50%, #0d1b2a 100%) !important;
+  position: relative;
+}
+
+[data-theme="space"] body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 160px 30px, #ddd, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: sparkle 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes sparkle {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200px);
+  }
+}
+
+[data-theme="space"] .text-white,
+[data-theme="space"] .text-gray-300,
+[data-theme="space"] .text-gray-200 {
+  color: #e0e6ed !important;
+  text-shadow: 0 0 5px rgba(224, 230, 237, 0.5) !important;
+}
+
+[data-theme="space"] h1,
+[data-theme="space"] h2,
+[data-theme="space"] h3 {
+  color: #64b5f6 !important;
+  text-shadow: 0 0 10px #64b5f6 !important;
+}
+
+[data-theme="space"] .bg-gradient-to-r,
+[data-theme="space"] .bg-gradient-to-br {
+  background: rgba(13, 27, 42, 0.8) !important;
+  border: 1px solid #64b5f6 !important;
+  box-shadow: 0 0 15px rgba(100, 181, 246, 0.3) !important;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -39,6 +144,19 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #7c3aed, #db2777);
+}
+
+/* 3D Effects */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
 }
 
 /* Smooth animations */
