@@ -2,9 +2,6 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { ExternalLink } from "lucide-react"
 import Link from "next/link"
 
@@ -98,89 +95,63 @@ export default function Projects() {
                 transition={{ duration: 0.6, delay: 0.1 * index }}
                 onMouseEnter={() => setHoveredProject(project.title)}
                 onMouseLeave={() => setHoveredProject(null)}
+                className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 border-purple-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 group h-full overflow-hidden p-6 rounded-lg"
               >
-                <Card className="bg-gradient-to-br from-purple-900/50 to-pink-900/50 border-purple-500/30 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-300 group h-full overflow-hidden">
-                  <CardHeader className="relative">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center space-x-3">
-                        <motion.span
-                          className="text-3xl"
-                          animate={hoveredProject === project.title ? { rotate: 360, scale: 1.2 } : {}}
-                          transition={{ duration: 0.5 }}
-                        >
-                          {project.emoji}
-                        </motion.span>
-                        <CardTitle className="text-white group-hover:text-purple-200 transition-colors duration-300 font-bold text-xl">
-                          {project.title}
-                        </CardTitle>
-                      </div>
-                      {project.link && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-pink-400 hover:text-pink-300 hover:bg-pink-500/20"
-                          asChild
-                        >
-                          <Link href={project.link} target="_blank">
-                            <ExternalLink className="w-4 h-4" />
-                          </Link>
-                        </Button>
-                      )}
-                    </div>
-
-                    {/* Demo GIF that appears on hover */}
-                    <motion.div
-                      className="relative overflow-hidden rounded-lg mb-4"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={
-                        hoveredProject === project.title ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }
-                      }
-                      transition={{ duration: 0.3 }}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <motion.span
+                      className="text-3xl"
+                      animate={hoveredProject === project.title ? { rotate: 360, scale: 1.2 } : {}}
+                      transition={{ duration: 0.5 }}
                     >
-                      <img
-                        src={project.demoGif || "/placeholder.svg"}
-                        alt={`${project.title} demo`}
-                        className="w-full h-32 object-cover rounded-lg"
-                      />
-                    </motion.div>
-                  </CardHeader>
-
-                  <CardContent>
-                    <p className="text-white mb-4 group-hover:text-gray-200 transition-colors duration-300 font-medium">
-                      {project.description}
-                    </p>
-
-                    {/* Animated Role Badge */}
-                    <motion.div
-                      className="mb-4"
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={hoveredProject === project.title ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                      transition={{ duration: 0.3 }}
+                      {project.emoji}
+                    </motion.span>
+                    <span className="text-white group-hover:text-purple-200 transition-colors duration-300 font-bold text-xl">
+                      {project.title}
+                    </span>
+                  </div>
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-pink-400 hover:text-pink-300 hover:bg-pink-500/20 p-2 rounded-full"
                     >
-                      <Badge className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-emerald-300 border-emerald-500/30 font-medium">
-                        👨‍💻 {project.role}
-                      </Badge>
-                    </motion.div>
-
-                    {/* Tech Stack with Animation */}
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech, techIndex) => (
-                        <motion.div
-                          key={tech}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={
-                            hoveredProject === project.title ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 0.9 }
-                          }
-                          transition={{ duration: 0.2, delay: techIndex * 0.05 }}
-                        >
-                          <Badge className="bg-purple-500/20 text-white border-purple-500/30 hover:bg-purple-500/30 transition-colors duration-300 font-medium">
-                            {tech}
-                          </Badge>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  )}
+                </div>
+                <motion.div
+                  className="relative overflow-hidden rounded-lg mb-4"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={
+                    hoveredProject === project.title ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }
+                  }
+                  transition={{ duration: 0.3 }}
+                >
+                  <img
+                    src={project.demoGif || "/placeholder.svg"}
+                    alt={`${project.title} demo`}
+                    className="w-full h-32 object-cover rounded-lg"
+                  />
+                </motion.div>
+                <p className="text-white mb-4 group-hover:text-gray-200 transition-colors duration-300 font-medium">
+                  {project.description}
+                </p>
+                <div className="mb-4 text-emerald-300 text-sm">
+                  👨‍💻 {project.role}
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, techIndex) => (
+                    <span
+                      key={tech}
+                      className="bg-purple-500/20 text-white border border-purple-500/30 px-2 py-1 rounded font-medium text-xs"
+                      style={{ display: 'inline-block' }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             ))}
         </div>
@@ -205,38 +176,34 @@ export default function Projects() {
                 transition={{ duration: 0.6, delay: 0.6 + 0.1 * index }}
                 onMouseEnter={() => setHoveredProject(project.title)}
                 onMouseLeave={() => setHoveredProject(null)}
+                className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border-purple-500/20 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 group h-full p-6 rounded-lg"
               >
-                <Card className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border-purple-500/20 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 group h-full">
-                  <CardHeader>
-                    <div className="flex items-center space-x-3 mb-2">
-                      <motion.span
-                        className="text-2xl"
-                        animate={hoveredProject === project.title ? { rotate: 360, scale: 1.1 } : {}}
-                        transition={{ duration: 0.5 }}
-                      >
-                        {project.emoji}
-                      </motion.span>
-                      <CardTitle className="text-white group-hover:text-purple-200 transition-colors duration-300 font-bold">
-                        {project.title}
-                      </CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-white mb-4 group-hover:text-gray-200 transition-colors duration-300 font-medium">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <Badge
-                          key={tech}
-                          className="bg-purple-500/20 text-white border-purple-500/30 hover:bg-purple-500/30 transition-colors duration-300 font-medium"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                <div className="flex items-center space-x-3 mb-2">
+                  <motion.span
+                    className="text-2xl"
+                    animate={hoveredProject === project.title ? { rotate: 360, scale: 1.1 } : {}}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {project.emoji}
+                  </motion.span>
+                  <span className="text-white group-hover:text-purple-200 transition-colors duration-300 font-bold">
+                    {project.title}
+                  </span>
+                </div>
+                <p className="text-white mb-4 group-hover:text-gray-200 transition-colors duration-300 font-medium">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="bg-purple-500/20 text-white border border-purple-500/30 px-2 py-1 rounded font-medium text-xs"
+                      style={{ display: 'inline-block' }}
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             ))}
         </div>

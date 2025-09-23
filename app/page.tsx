@@ -3,6 +3,18 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
+
+function ClientDateTime() {
+  const [now, setNow] = useState("");
+  useEffect(() => {
+    setNow(new Date().toLocaleString());
+    const interval = setInterval(() => {
+      setNow(new Date().toLocaleString());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  return <span>{now}</span>;
+}
 import { motion, AnimatePresence } from "framer-motion"
 import {
   Terminal,
@@ -17,6 +29,7 @@ import {
   Download,
   Menu,
   X,
+  Twitter,
 } from "lucide-react"
 
 interface TerminalCommand {
@@ -50,7 +63,15 @@ export default function TerminalPortfolio() {
       tech: ["ELIZA OS", "AI", "Trading", "JavaScript"],
       link: "https://agent-royale-ai.vercel.app/",
       status: "DEPLOYED",
-      award: "🏆 ETH Global Winner",
+      award: "🏆 Solana MegaHack 2025 and Colloseum Hackathon 2025",
+    },
+    {
+      name: "Family Manager",
+      description: "Family system for finance and passwords",
+      tech: ["Supabase", "Next.js", "Vercel", "JavaScript"],
+      link: "https://family-manager-delta.vercel.app/",
+      status: "DEPLOYED",
+      award: "Honestly just for my mom",
     },
     {
       name: "AI-Powered Liquidity Pool Advisor",
@@ -58,7 +79,7 @@ export default function TerminalPortfolio() {
       tech: ["AI", "DeFi", "Blockchain", "Frontend"],
       link: "https://ethglobal-agentic.vercel.app/",
       status: "LIVE",
-      award: "🥇 Agentic Ethereum 2025",
+      award: "🥇 Agentic Ethereum 2025, in charged of frontend and integration",
     },
     {
       name: "NFT Marketplace",
@@ -66,37 +87,44 @@ export default function TerminalPortfolio() {
       tech: ["Solidity", "Blockchain", "Web3"],
       link: "https://encode-hackathon-ten.vercel.app/",
       status: "BETA",
-      award: "🎯 Encode Hackathon",
+      award: "🎯 Encode Hackathon, in charged of backend",
     },
     {
       name: "Budget AI Advisor",
       description: "Intelligent financial guidance system",
       tech: ["Node.js", "Gemini API", "AI"],
       status: "DEV",
-      award: "💡 Innovation Prize",
+      award: "💡 ImagineHack 2024 (Taylor's), in charged of AI integration",
     },
     {
       name: "QuantTrading Backtest System",
       description: "Comprehensive quantitative trading analysis",
       tech: ["Python", "Trading", "Analytics"],
       status: "DEV",
-      award: "📈 Quant Challenge",
+      award: "📈 Quant trading backtesting library",
     },
     {
       name: "Asset Management System",
       description: "Internal Laravel application for asset allocation",
       tech: ["Laravel", "PHP", "MySQL"],
       status: "DEPLOYED",
-      award: "🏢 Enterprise Solution",
+      award: "🏢 Enterprise Solution, full stack",
+    },
+    {
+      name: "AI trading bot adviser",
+      description: "AI-powered trading bot for automated trading strategies",
+      tech: ["The Graph", "CoinGecko API", "AI", "Solana"],
+      status: "Under Development",
+      award: "Own project, curious built",
     },
   ]
 
   const skills = {
-    "Programming Languages": ["Python", "JavaScript", "PHP", "Solidity", "R"],
+    "Programming Languages": ["Python", "JavaScript", "PHP", "C++", "R", "C#", "HTML", "CSS", "Tailwind CSS"],
     "Frameworks & Libraries": ["Next.js", "Laravel", "Node.js", "React"],
-    "Blockchain & Web3": ["Smart Contracts", "DeFi", "ELIZA OS", "Anchor"],
-    "Cloud & Tools": ["Azure", "Google Cloud", "Git", "VS Code"],
-    "AI & Data": ["Machine Learning", "Data Analysis", "Gemini API"],
+    "Blockchain & Web3": ["Solidity","Smart Contracts", "DeFi", "ELIZA OS", "Anchor"],
+    "Cloud & Tools": ["Azure", "Google Cloud", "Git", "VS Code", "Figma", "Canva", "Gitlab"],
+    "AI & Data": ["Machine Learning","numpy", "Gemini API"],
   }
 
   const experience = [
@@ -108,12 +136,20 @@ export default function TerminalPortfolio() {
       status: "COMPLETED",
     },
     {
-      role: "Community Department Lead",
+      role: "Community Department Lead, External Vice President",
       company: "APU Blockchain & Crypto Club",
-      period: "2024 - Present",
-      achievements: ["Led community initiatives", "Organized blockchain events"],
+      period: "2024 Jan- 2025 Sep (Dept Lead), Sep until now (VP)",
+      achievements: ["Led community initiatives", "Organized tons of blockchain events", "Emceed for DevMatch 2025"],
       status: "ACTIVE",
     },
+     {
+      role: "Event team member",
+      company: "APU Hacktheles Club",
+      period: "2024 Aug - Present",
+      achievements: ["Emceed for EthUprising Hackathon", "Organized events"],
+      status: "ACTIVE",
+    },
+    
     {
       role: "Part Time Translator",
       company: "EndlessFantasy Translation",
@@ -230,6 +266,16 @@ export default function TerminalPortfolio() {
       case "welcome":
         return (
           <div className="space-y-4">
+            {/* Profile Image Frame */}
+            <div className="flex justify-center mt-2">
+              <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-2 border-green-400 bg-gray-900 overflow-hidden flex items-center justify-center shadow-lg">
+                <img
+                  src="/images/celine-profile.jpeg"
+                  alt="Celine Khaw"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center space-y-2">
               <div className="text-2xl sm:text-4xl font-bold text-green-400 font-mono">
                 ╔═══════════════════════════════════════╗
@@ -265,8 +311,9 @@ export default function TerminalPortfolio() {
                 </div>
               </div>
             </div>
+           
           </div>
-        )
+     )
 
       case "projects":
         return (
@@ -418,7 +465,9 @@ export default function TerminalPortfolio() {
                 [2024-PRESENT] APU Blockchain & Crypto Club
               </div>
               <div className="text-white font-mono text-xs sm:text-sm ml-2 sm:ml-4">
-                → Community Department Lead
+                → External Vice President & Ex- Community Department Lead
+                <br />→ Liase with external parties for collaborations
+                <br />→ Seek Sponsorships for the club activities
                 <br />→ Organizing blockchain events & workshops
                 <br />→ Building Web3 community at university
               </div>
@@ -520,6 +569,45 @@ export default function TerminalPortfolio() {
                     </a>
                     "
                   </div>
+                   <div className="text-white flex items-center gap-2">
+                    X (twitter): "
+                    <a
+                      href="https://x.com/KhawCeline"
+                      target="_blank"
+                      className="text-green-400 hover:text-green-300 flex items-center gap-1"
+                      rel="noreferrer"
+                    >
+                      <Twitter size={14} />
+                      @KhawCeline
+                    </a>
+                    "
+                  </div>
+                   <div className="text-white flex items-center gap-2">
+                    Telegram: "
+                    <a
+                      href="https://t.me/celinekhaw"
+                      target="_blank"
+                      className="text-green-400 hover:text-green-300 flex items-center gap-1"
+                      rel="noreferrer"
+                    >
+                     
+                      @celinekhaw
+                    </a>
+                    "
+                  </div>
+                  <div className="text-white flex items-center gap-2">
+                    Discord: "
+                    <a
+                      href="https://t.me/celinekhaw"
+                      target="_blank"
+                      className="text-green-400 hover:text-green-300 flex items-center gap-1"
+                      rel="noreferrer"
+                    >
+                      
+                      KTE,C#8868
+                    </a>
+                    "
+                  </div>
                 </div>
               </motion.div>
 
@@ -567,7 +655,7 @@ export default function TerminalPortfolio() {
             <Terminal className="w-4 h-4 sm:w-5 sm:h-5" />
             <span className="text-sm sm:text-lg font-bold">AI_CONSOLE_v2.1</span>
           </div>
-          <div className="text-xs sm:text-sm text-gray-400 hidden sm:block">{new Date().toLocaleString()}</div>
+          <div className="text-xs sm:text-sm text-gray-400 hidden sm:block"><ClientDateTime /></div>
         </div>
 
         <div className="flex items-center space-x-2">
