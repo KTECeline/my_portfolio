@@ -298,8 +298,8 @@ export default function TerminalPortfolio() {
                 <div className="text-white font-mono text-xs mt-2">
                   <div>● Projects: {projects.length} active</div>
                   <div>● Hackathons: 9+ participated</div>
-                  <div>● Awards: Multiple wins</div>
-                  <div>● Status: Available for opportunities</div>
+                  <div>● Awards: One wins</div>
+                  <div>● Status: Available for Internship from Jan - April 2025</div>
                 </div>
               </div>
               <div className="bg-gray-900/50 border border-blue-500/30 rounded p-3 sm:p-4">
