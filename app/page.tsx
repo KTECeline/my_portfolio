@@ -65,6 +65,13 @@ export default function TerminalPortfolio() {
       status: "DEPLOYED",
       award: "🏆 Solana MegaHack 2025 and Colloseum Hackathon 2025",
     },
+    { name: "Ethygen",
+    description: "An Unified Asset Perp DEX on Eth Sepolia, with privy, avail and hardhat integration",
+    tech: ["Next.js", "Solidity", "Hardhat", "Privy", "Avail"],
+    link: "https://ethglobal.com/showcase/ethygen-a65dn",
+    status: "BETA",
+    award: "Front End Developer + Integration"
+  },
     {
       name: "Family Manager",
       description: "Family system for finance and passwords",
@@ -169,6 +176,7 @@ export default function TerminalPortfolio() {
     "Internal APU CTF 2024",
     "Math Galactica 2023 - Quantum Quest",
     "Cisco Networking Certificate",
+    "EthOnline 2025 (ETHGlobal)",
   ]
 
   const executeCommand = (cmd: string) => {

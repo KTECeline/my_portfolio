@@ -16,6 +16,7 @@ const achievements = [
   { name: "University Future of Blockchain Hackathon 2025", type: "Hackathon", year: "2025" },
   { name: "Agentic Ethereum 2025 (ETHGlobal)", type: "Hackathon", year: "2025" },
   { name: "Breakout SOLANA/ MEGAHACK 2025", type: "Hackathon", year: "2025" },
+  { name: "EthOnline 2024 (ETHGlobal)", type: "Hackathon", year: "2025" },
 ]
 
 const filterTypes = ["All", "Hackathon", "Conference", "Certification", "Competition"]

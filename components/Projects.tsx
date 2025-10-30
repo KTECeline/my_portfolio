@@ -6,6 +6,15 @@ import { ExternalLink } from "lucide-react"
 import Link from "next/link"
 
 const projects = [
+  { title: "Ethygen",
+    description: "An Unified Asset Perp DEX on Eth Sepolia, with privy, avail and hardhat integration",
+    tech: ["Next.js", "Solidity", "Hardhat", "Privy", "Avail"],
+    link: "https://ethglobal.com/showcase/ethygen-a65dn",
+    emoji: "⚡",
+    featured: true,
+    role: "Front End Developer + Integration",
+    demoGif: "https://placehold.co/300x200?text=Ethygen+Demo",
+  },
   {
     title: "Agent Royale AI",
     description:
