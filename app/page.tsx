@@ -58,12 +58,21 @@ export default function TerminalPortfolio() {
 
   const projects = [
     {
+      name: "Deadman Switch",
+      description: "An AI agent that auto-transfers your crypto to a beneficiary if you go inactive - no middlemen or fees.",
+      tech: ["Anchor, Helios Websocket, x402, Nextjs, Typescript, Vercel "],
+      link: "https://deadman-switch-eight.vercel.app/",
+      status: "DEPLOYED",
+      award: "Project submitted to Dev3Pack Global Hackathon 2026, currently in top 10",
+
+    },
+    {
       name: "Agent Royale AI",
       description: "AI Trading Game with ELIZA OS integration",
       tech: ["ELIZA OS", "AI", "Trading", "JavaScript"],
       link: "https://agent-royale-ai.vercel.app/",
       status: "DEPLOYED",
-      award: "🏆 Solana MegaHack 2025 and Colloseum Hackathon 2025",
+      award: "Project submitted to Solana MegaHack 2025 and Colloseum Hackathon 2025",
     },
     { name: "Ethygen",
     description: "An Unified Asset Perp DEX on Eth Sepolia, with privy, avail and hardhat integration",
@@ -136,6 +145,14 @@ export default function TerminalPortfolio() {
 
   const experience = [
     {
+      role: "AI Engineer",
+      company: "FINDOC SDN BHD",
+      period: "Dec 2025- Mar 2026",
+      achievements: ["Use Google Cloud enviroment to deplot an AI Agent for financial advisory", "Second project is to build an AIGC platform, main job is to scrap data from multiple social media platforms to get the recent trend and use the data to generate suitable prompts the user needs" ],
+      status: "Completed",
+
+    },
+    {
       role: "Software Engineer Intern",
       company: "SoftWare International",
       period: "Oct 2024 - Jan 2025",
@@ -177,6 +194,7 @@ export default function TerminalPortfolio() {
     "Math Galactica 2023 - Quantum Quest",
     "Cisco Networking Certificate",
     "EthOnline 2025 (ETHGlobal)",
+    "Dev3Pack Global Hackathon 2026 Top 10",
   ]
 
   const executeCommand = (cmd: string) => {
@@ -296,7 +314,7 @@ export default function TerminalPortfolio() {
                 Blockchain & AI Builder | Hackathon Explorer
               </div>
               <div className="text-xs sm:text-sm text-gray-400 font-mono">
-                Computer Science (AI) Student @ Asia Pacific University
+                Computer Science (AI) Year 3 Student @ Asia Pacific University
               </div>
             </motion.div>
 
@@ -307,7 +325,7 @@ export default function TerminalPortfolio() {
                   <div>● Projects: {projects.length} active</div>
                   <div>● Hackathons: 9+ participated</div>
                   <div>● Awards: One wins</div>
-                  <div>● Status: Available for Internship from Jan - April 2025</div>
+                 
                 </div>
               </div>
               <div className="bg-gray-900/50 border border-blue-500/30 rounded p-3 sm:p-4">
