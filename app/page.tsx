@@ -63,7 +63,7 @@ export default function TerminalPortfolio() {
       tech: ["Anchor, Helios Websocket, x402, Nextjs, Typescript, Vercel "],
       link: "https://deadman-switch-eight.vercel.app/",
       status: "DEPLOYED",
-      award: "Project submitted to Dev3Pack Global Hackathon 2026, currently in top 10",
+      award: "Project submitted to Dev3Pack Global Hackathon 2026, Award: Top 10 for solana best overall project",
 
     },
     {
