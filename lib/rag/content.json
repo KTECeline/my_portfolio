@@ -1,0 +1,105 @@
+{
+  "_comment": "Source-of-truth text chunks for the 'ask' RAG feature. Mirrors the real data in app/page.tsx. When you update your projects/skills/experience, edit the matching chunk here and re-run: npm run generate-embeddings",
+  "chunks": [
+    {
+      "id": "bio",
+      "source": "welcome",
+      "text": "Celine Khaw (Khaw Tze Ern) is a Blockchain & AI Builder and Hackathon Explorer. She is a Year 3 Computer Science (Artificial Intelligence) student at Asia Pacific University (APU) in Malaysia. She has built 10+ projects, participated in 9+ hackathons, and won 2 hackathons. She focuses on blockchain, Web3, DeFi, and AI. Contact email: leopardjiang03@gmail.com. GitHub: kteceline. LinkedIn: celine-khaw. X/Twitter: @KhawCeline. Telegram: @celinekhaw."
+    },
+    {
+      "id": "project-deadman-switch",
+      "source": "projects",
+      "text": "Project 'Deadman Switch': An AI agent that automatically transfers your crypto to a beneficiary if you go inactive, with no middlemen or fees. Tech stack: Anchor, Helios Websocket, x402, Next.js, TypeScript, Vercel. Status: Deployed. Award: Submitted to Dev3Pack Global Hackathon 2026 and won Top 10 for Solana best overall project. Live demo: https://deadman-switch-eight.vercel.app/"
+    },
+    {
+      "id": "project-agent-royale",
+      "source": "projects",
+      "text": "Project 'Agent Royale AI': An AI trading game with ELIZA OS integration. Tech stack: ELIZA OS, AI, trading, JavaScript. Status: Deployed. Award: Submitted to Solana MegaHack 2025 and Colosseum Hackathon 2025. Live demo: https://agent-royale-ai.vercel.app/"
+    },
+    {
+      "id": "project-ethygen",
+      "source": "projects",
+      "text": "Project 'Ethygen': A unified asset perpetuals (perp) DEX on Ethereum Sepolia, with Privy, Avail and Hardhat integration. Tech stack: Next.js, Solidity, Hardhat, Privy, Avail. Status: Beta. Celine's role: Front End Developer and integration. Featured on the ETHGlobal showcase: https://ethglobal.com/showcase/ethygen-a65dn"
+    },
+    {
+      "id": "project-family-manager",
+      "source": "projects",
+      "text": "Project 'Family Manager': A family system for managing finances and passwords. Tech stack: Supabase, Next.js, Vercel, JavaScript. Status: Deployed. Note: she built it for her mom. Live demo: https://family-manager-delta.vercel.app/"
+    },
+    {
+      "id": "project-liquidity-pool-advisor",
+      "source": "projects",
+      "text": "Project 'AI-Powered Liquidity Pool Advisor': Advanced DeFi analytics for the Ethereum ecosystem. Tech stack: AI, DeFi, blockchain, frontend. Status: Live. Award: Won 1st place (gold) at Agentic Ethereum 2025 (ETHGlobal). Celine was in charge of frontend and integration. Live demo: https://ethglobal-agentic.vercel.app/"
+    },
+    {
+      "id": "project-nft-marketplace",
+      "source": "projects",
+      "text": "Project 'NFT Marketplace': A decentralized NFT trading platform. Tech stack: Solidity, blockchain, Web3. Status: Beta. Award: Built at the Encode Hackathon, where Celine was in charge of the backend. Live demo: https://encode-hackathon-ten.vercel.app/"
+    },
+    {
+      "id": "project-budget-ai-advisor",
+      "source": "projects",
+      "text": "Project 'Budget AI Advisor': An intelligent financial guidance system. Tech stack: Node.js, Gemini API, AI. Status: In development. Award: Built at ImagineHack 2024 (Taylor's University), where Celine was in charge of AI integration."
+    },
+    {
+      "id": "project-quant-backtest",
+      "source": "projects",
+      "text": "Project 'QuantTrading Backtest System': A comprehensive quantitative trading analysis and backtesting library. Tech stack: Python, trading, analytics. Status: In development."
+    },
+    {
+      "id": "project-asset-management",
+      "source": "projects",
+      "text": "Project 'Asset Management System': An internal enterprise Laravel application for asset allocation. Tech stack: Laravel, PHP, MySQL. Status: Deployed. Celine worked on it full stack."
+    },
+    {
+      "id": "project-ai-trading-bot",
+      "source": "projects",
+      "text": "Project 'AI trading bot adviser': An AI-powered trading bot for automated trading strategies. Tech stack: The Graph, CoinGecko API, AI, Solana. Status: Under development. This is her own project, built out of curiosity."
+    },
+    {
+      "id": "skills-summary",
+      "source": "skills",
+      "text": "Celine's technical skills. Programming languages: Python, JavaScript, PHP, C++, R, C#, HTML, CSS, Tailwind CSS. Frameworks and libraries: Next.js, Laravel, Node.js, React. Blockchain and Web3: Solidity, smart contracts, DeFi, ELIZA OS, Anchor. Cloud and tools: Azure, Google Cloud, Git, VS Code, Figma, Canva, GitLab. AI and data: machine learning, numpy, Gemini API."
+    },
+    {
+      "id": "exp-findoc",
+      "source": "experience",
+      "text": "Work experience: AI Engineer at FINDOC SDN BHD (December 2025 to March 2026). She used the Google Cloud environment to deploy an AI agent for financial advisory. Her second project there was building an AIGC platform whose main job was to scrape data from multiple social media platforms to detect recent trends and use that data to generate suitable prompts for the user's needs. Status: Completed."
+    },
+    {
+      "id": "exp-software-international",
+      "source": "experience",
+      "text": "Work experience: Software Engineer Intern at Software International (October 2024 to January 2025). She built a Laravel asset management system and improved efficiency by 40%. Status: Completed."
+    },
+    {
+      "id": "exp-apu-blockchain-club",
+      "source": "experience",
+      "text": "Leadership experience: Community Department Lead and later External Vice President at the APU Blockchain & Crypto Club (Community Dept Lead from January 2024 to September 2025, Vice President from September 2025 to now). She led community initiatives, organized many blockchain events, and emceed DevMatch 2025. Status: Active."
+    },
+    {
+      "id": "exp-hacktheles",
+      "source": "experience",
+      "text": "Experience: Event team member at the APU Hacktheles Club (August 2024 to present). She emceed the EthUprising Hackathon and organized events. Status: Active."
+    },
+    {
+      "id": "exp-translator",
+      "source": "experience",
+      "text": "Work experience: Part-time Translator at EndlessFantasy Translation (October 2021 to January 2024). She translated technical documents and maintained a 99% accuracy rate. Status: Completed."
+    },
+    {
+      "id": "community-blockchain-club",
+      "source": "community",
+      "text": "Community and leadership: At the APU Blockchain & Crypto Club (2024 to present) Celine serves as External Vice President and is a former Community Department Lead. She liaises with external parties for collaborations, seeks sponsorships for club activities, organizes blockchain events and workshops, and builds the Web3 community at her university."
+    },
+    {
+      "id": "community-hacktheles",
+      "source": "community",
+      "text": "Community involvement: At APU Hacktheles (2024) Celine is an event team member and emcee. She hosts hackathon events and facilitates networking and innovation."
+    },
+    {
+      "id": "achievements-hackathons",
+      "source": "community",
+      "text": "Hackathons and achievements Celine has participated in: Solana Hackfest 2024, DevCon 2024 (ETH Bangkok), ImagineHack 2024 (Taylor's), University Future of Blockchain Hackathon 2025, Agentic Ethereum 2025 (ETHGlobal), Breakout Solana / MegaHack 2025, Internal APU CTF 2024, Math Galactica 2023 - Quantum Quest, Cisco Networking Certificate, EthOnline 2025 (ETHGlobal), and Dev3Pack Global Hackathon 2026 where she placed Top 10."
+    }
+  ]
+}

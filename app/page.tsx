@@ -31,6 +31,7 @@ import {
   X,
   Twitter,
 } from "lucide-react"
+import AskResponse from "@/components/AskResponse"
 
 interface TerminalCommand {
   command: string
@@ -201,6 +202,34 @@ export default function TerminalPortfolio() {
     const command = cmd.toLowerCase().trim()
     let output: React.ReactNode = null
 
+    // `ask` is handled before lowercasing so the question keeps its original casing.
+    const raw = cmd.trim()
+    if (/^ask(\s|$)/i.test(raw)) {
+      const question = raw
+        .replace(/^ask\s*/i, "")
+        .replace(/^["']|["']$/g, "")
+        .trim()
+      if (!question) {
+        setTerminalHistory((prev) => [
+          ...prev,
+          {
+            command: cmd,
+            output: (
+              <div className="text-yellow-400 text-xs sm:text-sm">
+                Usage: ask "your question" — e.g. ask "what blockchain projects has she built?"
+              </div>
+            ),
+          },
+        ])
+        return
+      }
+      setTerminalHistory((prev) => [
+        ...prev,
+        { command: cmd, output: <AskResponse question={question} /> },
+      ])
+      return
+    }
+
     switch (command) {
       case "help":
         output = (
@@ -215,6 +244,9 @@ export default function TerminalPortfolio() {
               <div>• contact - show contact information</div>
               <div>• clear - clear terminal</div>
               <div>• whoami - show profile info</div>
+              <div className="text-green-300">
+                • ask "..." - ask AI anything about Celine (e.g. ask "her best projects?")
+              </div>
             </div>
           </div>
         )
@@ -332,6 +364,7 @@ export default function TerminalPortfolio() {
                 <div className="text-blue-400 font-mono text-xs sm:text-sm">QUICK ACCESS</div>
                 <div className="text-white font-mono text-xs mt-2 space-y-1">
                   <div>→ Type 'help' for commands</div>
+                  <div className="text-green-300">→ Ask AI: ask "her best projects?"</div>
                   <div>→ Click tabs to navigate</div>
                   <div>→ Tap terminal icon (mobile)</div>
                 </div>
@@ -788,7 +821,7 @@ export default function TerminalPortfolio() {
                 onChange={(e) => setCurrentInput(e.target.value)}
                 onKeyPress={handleKeyPress}
                 className="bg-transparent border-none outline-none text-green-400 ml-2 flex-1 text-xs sm:text-sm"
-                placeholder="Type 'help' for commands..."
+                placeholder={'Try: ask "her best projects?" or type help'}
               />
               <span className="animate-pulse text-green-400">█</span>
             </div>
