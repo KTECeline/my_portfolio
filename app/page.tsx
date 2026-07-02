@@ -73,7 +73,15 @@ export default function TerminalPortfolio() {
       tech: ["ELIZA OS", "AI", "Trading", "JavaScript"],
       link: "https://agent-royale-ai.vercel.app/",
       status: "DEPLOYED",
-      award: "Project submitted to Solana MegaHack 2025 and Colloseum Hackathon 2025",
+      award: "Project submitted to Solana MegaHack 2025 and Colloseum Hackathon 2025, frontend",
+    },
+    {
+      name: "Amazon Review Sentiment API",
+      description: "End-to-end NLP pipeline that classifies Amazon product reviews as positive or negative using TF-IDF embeddings and Linear SVM, served via a REST API",
+      tech: ["Python", "scikit-learn", "FastAPI", "MLflow", "Docker", "NLP"],
+      link: "https://github.com/KTECeline/-Amazon-Review-Sentiment-API",
+      status: "LIVE",
+      award: "Personal Project — full ML lifecycle: feature engineering, model comparison (LR vs RF vs SVM), experiment tracking, and online inference API",
     },
     { name: "Ethygen",
     description: "An Unified Asset Perp DEX on Eth Sepolia, with privy, avail and hardhat integration",
@@ -96,7 +104,7 @@ export default function TerminalPortfolio() {
       tech: ["AI", "DeFi", "Blockchain", "Frontend"],
       link: "https://ethglobal-agentic.vercel.app/",
       status: "LIVE",
-      award: "🥇 Agentic Ethereum 2025, in charged of frontend and integration",
+      award: "ETH Agentic Hackathon 2025, in charged of frontend and integration",
     },
     {
       name: "NFT Marketplace",
@@ -113,6 +121,7 @@ export default function TerminalPortfolio() {
       status: "DEV",
       award: "💡 ImagineHack 2024 (Taylor's), in charged of AI integration",
     },
+
     {
       name: "QuantTrading Backtest System",
       description: "Comprehensive quantitative trading analysis",
