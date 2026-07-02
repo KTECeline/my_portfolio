@@ -14,7 +14,12 @@
     {
       "id": "project-agent-royale",
       "source": "projects",
-      "text": "Project 'Agent Royale AI': An AI trading game with ELIZA OS integration. Tech stack: ELIZA OS, AI, trading, JavaScript. Status: Deployed. Award: Submitted to Solana MegaHack 2025 and Colosseum Hackathon 2025. Live demo: https://agent-royale-ai.vercel.app/"
+      "text": "Project 'Agent Royale AI': An AI trading game with ELIZA OS integration. Tech stack: ELIZA OS, AI, trading, JavaScript. Status: Deployed. Celine worked on the frontend. Award: Submitted to Solana MegaHack 2025 and Colosseum Hackathon 2025. Live demo: https://agent-royale-ai.vercel.app/"
+    },
+    {
+      "id": "project-amazon-sentiment",
+      "source": "projects",
+      "text": "Project 'Amazon Review Sentiment API': An end-to-end NLP pipeline that classifies Amazon product reviews as positive or negative using TF-IDF embeddings and a Linear SVM, served via a REST API. Tech stack: Python, scikit-learn, FastAPI, MLflow, Docker, NLP. Status: Live. This is a personal project covering the full machine learning lifecycle: feature engineering, model comparison (Logistic Regression vs Random Forest vs SVM), experiment tracking, and an online inference API. Code: https://github.com/KTECeline/-Amazon-Review-Sentiment-API"
     },
     {
       "id": "project-ethygen",
@@ -29,7 +34,7 @@
     {
       "id": "project-liquidity-pool-advisor",
       "source": "projects",
-      "text": "Project 'AI-Powered Liquidity Pool Advisor': Advanced DeFi analytics for the Ethereum ecosystem. Tech stack: AI, DeFi, blockchain, frontend. Status: Live. Award: Won 1st place (gold) at Agentic Ethereum 2025 (ETHGlobal). Celine was in charge of frontend and integration. Live demo: https://ethglobal-agentic.vercel.app/"
+      "text": "Project 'AI-Powered Liquidity Pool Advisor': Advanced DeFi analytics for the Ethereum ecosystem. Tech stack: AI, DeFi, blockchain, frontend. Status: Live. Built at the ETH Agentic Hackathon 2025, where Celine was in charge of frontend and integration. Live demo: https://ethglobal-agentic.vercel.app/"
     },
     {
       "id": "project-nft-marketplace",
