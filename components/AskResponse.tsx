@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 // Renders a single streamed answer from /api/ask inside the terminal history.
 // Mounts once per `ask` command; manages its own loading / streaming / error
@@ -9,13 +9,15 @@ export default function AskResponse({ question }: { question: string }) {
   const [answer, setAnswer] = useState("")
   const [status, setStatus] = useState<"loading" | "streaming" | "done" | "error">("loading")
   const [errorMsg, setErrorMsg] = useState("")
-  const started = useRef(false)
 
   useEffect(() => {
-    // Guard against React 18 StrictMode double-invoke in dev.
-    if (started.current) return
-    started.current = true
-
+    // `cancelled` guards against state updates after unmount. We intentionally
+    // do NOT use a "run once" ref here: under React StrictMode (dev) the effect
+    // mounts→unmounts→remounts, and a run-once guard combined with abort-on-
+    // cleanup would abort the only request and then skip the retry, leaving it
+    // stuck on "Thinking…". Re-fetching on remount is correct; the extra dev
+    // request is harmless (production mounts once).
+    let cancelled = false
     const controller = new AbortController()
 
     async function run() {
@@ -35,12 +37,13 @@ export default function AskResponse({ question }: { question: string }) {
           } catch {
             /* non-JSON error body */
           }
+          if (cancelled) return
           setErrorMsg(msg)
           setStatus("error")
           return
         }
 
-        setStatus("streaming")
+        if (!cancelled) setStatus("streaming")
         const reader = res.body.getReader()
         const decoder = new TextDecoder()
         let acc = ""
@@ -48,41 +51,45 @@ export default function AskResponse({ question }: { question: string }) {
           const { done, value } = await reader.read()
           if (done) break
           acc += decoder.decode(value, { stream: true })
+          if (cancelled) return
           setAnswer(acc)
         }
-        setStatus("done")
+        if (!cancelled) setStatus("done")
       } catch (err) {
-        if ((err as Error)?.name === "AbortError") return
+        if (cancelled || (err as Error)?.name === "AbortError") return
         setErrorMsg("network error — could not reach the assistant")
         setStatus("error")
       }
     }
 
     run()
-    return () => controller.abort()
+    return () => {
+      cancelled = true
+      controller.abort()
+    }
   }, [question])
 
   if (status === "error") {
     return (
-      <div className="text-red-400 text-xs sm:text-sm">
-        <span className="text-red-500">ask: error:</span> {errorMsg}
+      <div className="text-[13.5px] text-[#ff7a6b]">
+        <span className="text-[#ff5f56]">ask: error:</span> {errorMsg}
       </div>
     )
   }
 
   if (status === "loading") {
     return (
-      <div className="text-green-400 text-xs sm:text-sm flex items-center gap-2">
-        <span className="animate-pulse">▋</span>
-        <span className="text-gray-400">Thinking...</span>
+      <div className="flex items-center gap-2 text-[13.5px]">
+        <span className="animate-pulse text-[#ffb000]">▋</span>
+        <span className="text-[#8a6d3b]">Thinking...</span>
       </div>
     )
   }
 
   return (
-    <div className="text-green-300 text-xs sm:text-sm whitespace-pre-wrap leading-relaxed">
+    <div className="whitespace-pre-wrap text-[13.5px] leading-relaxed text-[#c9a86a]">
       {answer}
-      {status === "streaming" && <span className="animate-pulse text-green-400">▋</span>}
+      {status === "streaming" && <span className="animate-pulse text-[#ffb000]">▋</span>}
     </div>
   )
 }

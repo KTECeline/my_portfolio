@@ -10,9 +10,14 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Celine Khaw - AI Console Terminal",
-  description: "Blockchain & AI Builder | Hackathon Explorer | Trading Terminal Portfolio",
-  generator: "v0.dev",
+  title: "Celine Khaw — AI Engineer",
+  description:
+    "AI engineer focused on LLM systems — fine-tuning, RAG, and backend that ships. CS (AI) @ APU, previously AI Engineer at FINDOC.",
+  openGraph: {
+    title: "Celine Khaw — AI Engineer",
+    description: "AI engineer focused on LLM systems — fine-tuning, RAG, and backend that ships.",
+    type: "website",
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

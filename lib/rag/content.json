@@ -4,7 +4,17 @@
     {
       "id": "bio",
       "source": "welcome",
-      "text": "Celine Khaw (Khaw Tze Ern) is a Blockchain & AI Builder and Hackathon Explorer. She is a Year 3 Computer Science (Artificial Intelligence) student at Asia Pacific University (APU) in Malaysia. She has built 10+ projects, participated in 9+ hackathons, and won 2 hackathons. She focuses on blockchain, Web3, DeFi, and AI. Contact email: leopardjiang03@gmail.com. GitHub: kteceline. LinkedIn: celine-khaw. X/Twitter: @KhawCeline. Telegram: @celinekhaw."
+      "text": "Celine Khaw (Khaw Tze Ern) is an AI engineer who builds and evaluates LLM systems — fine-tuning, retrieval-augmented generation (RAG), and backend that ships and lasts. She is a Year 3 Computer Science (Artificial Intelligence) student at Asia Pacific University (APU) in Malaysia, and was previously an AI Engineer at FINDOC. She cares about the parts most people skip: fine-tuning, retrieval, and honest evaluation. She is open to AI / backend engineering roles and internships in Singapore. Contact email: leopardjiang03@gmail.com. GitHub: KTECeline. LinkedIn: celine-khaw. X/Twitter: @KhawCeline."
+    },
+    {
+      "id": "flagship-llm-finetune",
+      "source": "flagship",
+      "text": "Celine's current flagship project (in progress) is Bilingual LLM Fine-Tuning for Chinese to English translation. She is fine-tuning an open-source model (Qwen2.5-7B) with LoRA/QLoRA using Hugging Face PEFT and transformers for domain-specific Chinese-English translation, and rigorously measuring whether it beats the base model. Her differentiator is evaluation: automatic metrics (BLEU, chrF, and COMET as the primary signal) plus a hand-scored qualitative rubric for tone, idiom, register and cultural nuance — informed by her three years of professional translation experience. She tracks runs in Weights & Biases and reports honest failure cases, not just wins. This shows the full ML lifecycle: data curation, fine-tuning, evaluation, and deployment."
+    },
+    {
+      "id": "rag-assistant",
+      "source": "flagship",
+      "text": "Celine built the 'ask' assistant on her own portfolio site — it is a retrieval-augmented generation (RAG) pipeline she wrote. It embeds portfolio content with Google's gemini-embedding-001, retrieves the most relevant chunks using cosine similarity, and streams grounded answers from a Gemini model, answering only from her real work and saying so when it doesn't know. It demonstrates her hands-on RAG and LLM systems experience: embeddings, vector retrieval, prompt design, streaming, and abuse protection (rate limiting)."
     },
     {
       "id": "project-deadman-switch",
