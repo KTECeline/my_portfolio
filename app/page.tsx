@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import {
   Github,
   Linkedin,
@@ -11,7 +11,9 @@ import {
   CornerDownLeft,
   ChevronRight,
   ChevronDown,
+  ChevronUp,
   Circle,
+  TerminalSquare,
 } from "lucide-react"
 import AskResponse from "@/components/AskResponse"
 
@@ -175,21 +177,13 @@ const EXT_COLOR: Record<string, string> = {
   cfg: "text-[#8a6d3b]",
 }
 
-type FileId =
-  | "readme"
-  | "flagship"
-  | "experience"
-  | "leadership"
-  | "ask"
-  | "contact"
-  | `exp:${string}`
+type FileId = "readme" | "flagship" | "experience" | "leadership" | "contact" | `exp:${string}`
 
 const FILES: { id: FileId; name: string; ext: string }[] = [
   { id: "readme", name: "README.md", ext: "md" },
   { id: "flagship", name: "flagship.md", ext: "md" },
   { id: "experience", name: "experience.json", ext: "json" },
   { id: "leadership", name: "leadership.md", ext: "md" },
-  { id: "ask", name: "ask.sh", ext: "sh" },
   { id: "contact", name: "contact.cfg", ext: "cfg" },
 ]
 
@@ -216,6 +210,8 @@ function Comment({ children }: { children: React.ReactNode }) {
 function AskConsole() {
   const [input, setInput] = useState("")
   const [asked, setAsked] = useState<string[]>([])
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const submit = (q: string) => {
     const question = q.replace(/^ask\s*/i, "").replace(/^["']|["']$/g, "").trim()
@@ -224,31 +220,54 @@ function AskConsole() {
     setInput("")
   }
 
-  return (
-    <div className="space-y-4 text-[13.5px]">
-      <Comment>#!/bin/bash — a RAG assistant I built for this site. Answers from my real work; says so when it doesn&apos;t know.</Comment>
+  // keep the newest exchange in view as the conversation grows
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" })
+  }, [asked])
 
-      {asked.map((q, i) => (
-        <div key={i} className="space-y-1.5">
-          <div className="flex gap-2">
-            <span className="shrink-0 text-[#ffb000] glow">celine@apu:~$</span>
-            <span className="text-[#e8cf9e]">ask &quot;{q}&quot;</span>
+  return (
+    <div className="flex h-full flex-col">
+      <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto px-4 py-3 text-[13px]">
+        <Comment>#!/bin/bash — a RAG assistant I built for this site. Ask about my work; it answers from my real projects &amp; experience, and says so when it doesn&apos;t know.</Comment>
+
+        {asked.map((q, i) => (
+          <div key={i} className="space-y-1.5">
+            <div className="flex gap-2">
+              <span className="shrink-0 text-[#ffb000] glow">celine@apu:~$</span>
+              <span className="text-[#e8cf9e]">ask &quot;{q}&quot;</span>
+            </div>
+            <div className="pl-3 text-[#c9a86a]">
+              <AskResponse question={q} />
+            </div>
           </div>
-          <div className="pl-3 text-[#c9a86a]">
-            <AskResponse question={q} />
+        ))}
+
+        {asked.length === 0 && (
+          <div className="flex flex-wrap gap-2 pt-1">
+            {ASK_EXAMPLES.map((ex) => (
+              <button
+                key={ex}
+                onClick={() => submit(ex)}
+                className="rounded border border-[#2a2214] px-2.5 py-1 text-xs text-[#8a6d3b] transition-colors hover:border-[#ffb000]/40 hover:text-[#ffcc66]"
+              >
+                {ex}
+              </button>
+            ))}
           </div>
-        </div>
-      ))}
+        )}
+      </div>
 
       <form
         onSubmit={(e) => {
           e.preventDefault()
           submit(input)
         }}
-        className="flex items-center gap-2 border-t border-[#2a2214] pt-4"
+        className="flex shrink-0 items-center gap-2 border-t border-[#2a2214] px-4 py-2.5"
+        onClick={() => inputRef.current?.focus()}
       >
         <span className="shrink-0 text-[#ffb000] glow">celine@apu:~$</span>
         <input
+          ref={inputRef}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder='ask "what is she building?"'
@@ -260,20 +279,6 @@ function AskConsole() {
           <CornerDownLeft size={16} />
         </button>
       </form>
-
-      {asked.length === 0 && (
-        <div className="flex flex-wrap gap-2">
-          {ASK_EXAMPLES.map((ex) => (
-            <button
-              key={ex}
-              onClick={() => submit(ex)}
-              className="rounded border border-[#2a2214] px-2.5 py-1 text-xs text-[#8a6d3b] transition-colors hover:border-[#ffb000]/40 hover:text-[#ffcc66]"
-            >
-              {ex}
-            </button>
-          ))}
-        </div>
-      )}
     </div>
   )
 }
@@ -524,7 +529,6 @@ const TITLE: Record<string, string> = {
   flagship: "flagship.md",
   experience: "experience.json",
   leadership: "leadership.md",
-  ask: "ask.sh",
   contact: "contact.cfg",
 }
 
@@ -532,6 +536,7 @@ export default function Portfolio() {
   const [active, setActive] = useState<FileId>("readme")
   const [expOpen, setExpOpen] = useState(true)
   const [mobileTree, setMobileTree] = useState(false)
+  const [termOpen, setTermOpen] = useState(true)
 
   const open = (id: FileId) => {
     setActive(id)
@@ -594,7 +599,6 @@ export default function Portfolio() {
 
       <FileRow id="experience" name="experience.json" ext="json" indent />
       <FileRow id="leadership" name="leadership.md" ext="md" indent />
-      <FileRow id="ask" name="ask.sh" ext="sh" indent />
       <FileRow id="contact" name="contact.cfg" ext="cfg" indent />
     </div>
   )
@@ -658,9 +662,36 @@ export default function Portfolio() {
               {active === "flagship" && <FlagshipView />}
               {active === "experience" && <ExperienceView />}
               {active === "leadership" && <LeadershipView />}
-              {active === "ask" && <AskConsole />}
               {active === "contact" && <ContactView />}
               {activeExp && <ExperimentView exp={activeExp} open={open} />}
+            </div>
+          </div>
+
+          {/* persistent terminal panel (docked, always available) */}
+          <div
+            className={`flex shrink-0 flex-col border-t border-[#2a2214] bg-[#0d0b06] ${
+              termOpen ? "h-56 sm:h-64" : "h-9"
+            }`}
+          >
+            <button
+              onClick={() => setTermOpen((o) => !o)}
+              className="flex shrink-0 items-center justify-between px-4 py-2 text-[11px]"
+              aria-expanded={termOpen}
+            >
+              <span className="flex items-center gap-3">
+                <span className="flex items-center gap-1.5 border-b border-[#ffb000] pb-1.5 uppercase tracking-wider text-[#ffcc66]">
+                  <TerminalSquare size={13} /> Terminal
+                </span>
+                <span className="text-[#6b5628]">ask my RAG assistant anything</span>
+              </span>
+              {termOpen ? (
+                <ChevronDown size={15} className="text-[#8a6d3b]" />
+              ) : (
+                <ChevronUp size={15} className="text-[#8a6d3b]" />
+              )}
+            </button>
+            <div className={`min-h-0 flex-1 ${termOpen ? "" : "hidden"}`}>
+              <AskConsole />
             </div>
           </div>
 
